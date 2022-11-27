@@ -16,6 +16,7 @@ function App() {
   const [erro, setErro] = useState(0)
 
   function escolha(letra) {
+    console.log(erro)
     const incluida = selecionados.includes(letra)
     if (!incluida) {
       setSelecionados([...selecionados, letra])
@@ -54,8 +55,13 @@ function App() {
       />
 
       <Letras
+        palavra={palavra}
+        setPalavra={setPalavra}
         perdeu={perdeu}
+        setPerdeu={setPerdeu}
         venceu={venceu}
+        setVenceu={setVenceu}
+        setErro={setErro}
         clicado={clicado}
         setClicado={setClicado}
         selecionados={selecionados}
