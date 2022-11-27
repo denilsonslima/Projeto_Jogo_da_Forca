@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-html {
-    height: 100vh;
-}
-
 body {
     background-color: #F5F5F5;
     font-family: 'Roboto', sans-serif;
@@ -51,6 +47,12 @@ body {
     display: flex;
     gap: 10px;
     font-size: 50px;
+}
+
+.palavra div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .secundaria {
