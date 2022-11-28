@@ -1,14 +1,16 @@
 import { useState } from "react"
 
-function Chute({ clicado, perdeu, venceu, palavra, setVenceu, setPalavra, setPerdeu, setErro }) {
-    const [chute, setChut] = useState("")
+function Chute({ clicado, perdeu, venceu, palavra, setVenceu, setPalavra, setPerdeu, setErro, chute, setChut }) {
+    
 
     function pesquisar() {
         if (chute === palavra.toString().replaceAll(",", "")) {
             setVenceu(true)
+            setChut("")
             setPalavra([...palavra])
         } else {
             setPerdeu(true)
+            setChut("")
             setPalavra([...palavra])
             setErro(6)
         }

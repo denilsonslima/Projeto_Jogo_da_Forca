@@ -13,6 +13,7 @@ function App() {
   const [venceu, setVenceu] = useState(false)
   const [perdeu, setPerdeu] = useState(false)
   const [erro, setErro] = useState(0)
+  const [chute, setChut] = useState("")
 
   function iniciarJogo() {
     const escolhida = [...palavras[Math.floor(Math.random() * palavras.length)]]
@@ -30,6 +31,7 @@ function App() {
     setErro(0)
     setSelecionados([...a])
     iniciarJogo()
+    setChut("")
   }
 
   function escolha(letra) {
@@ -80,6 +82,8 @@ function App() {
         escolha={escolha} />
 
       <Chute
+        chute={chute}
+        setChut={setChut}
         palavra={palavra}
         setPalavra={setPalavra}
         perdeu={perdeu}
