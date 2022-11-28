@@ -22,6 +22,16 @@ function App() {
     setClicado(false)
   }
 
+  function reiniciar() {
+    let a = []
+    setClicado(true)
+    setVenceu(false)
+    setPerdeu(false)
+    setErro(0)
+    setSelecionados([...a])
+    iniciarJogo()
+  }
+
   function escolha(letra) {
     const incluida = selecionados.includes(letra)
     if (!incluida) {
@@ -53,6 +63,7 @@ function App() {
   return (
     <>
       <Jogo
+        reiniciar={reiniciar}
         iniciarJogo={iniciarJogo}
         clicado={clicado}
         work={!clicado || venceu || perdeu ? work : []}

@@ -1,4 +1,4 @@
-function Jogo({ work, venceu, erro, perdeu, iniciarJogo, clicado }) {
+function Jogo({ work, venceu, erro, perdeu, iniciarJogo, clicado, reiniciar }) {
     return (
         <>
             <section className="principal">
@@ -6,7 +6,7 @@ function Jogo({ work, venceu, erro, perdeu, iniciarJogo, clicado }) {
                 <button
                     data-test="choose-word"
                     className="sortearPalavra"
-                    onClick={() => clicado ? iniciarJogo() : perdeu || venceu ? iniciarJogo() : {}}>Escolher Palavra</button>
+                    onClick={() => clicado ? iniciarJogo() : perdeu || venceu ? reiniciar() : {}}>Escolher Palavra</button>
                 <div
                     data-test="word"
                     data-answer={clicado ? work.toString() : {}}
