@@ -2,34 +2,40 @@ import Jogo from "./componentes/Jogo";
 import { useState } from "react";
 import Letras from "./componentes/Letras";
 import palavras from "./palavras"
-const palavra = [...palavras[Math.floor(Math.random() * palavras.length)]]
-const teste = palavra.map(_e => "_")
+import Chute from "./componentes/Chute";
 
-console.log(palavra)
 
 function App() {
   const [clicado, setClicado] = useState(true)
   const [selecionados, setSelecionados] = useState([])
-  const [palavras, setPalavra] = useState(teste)
+  const [palavra, setWork] = useState([])
+  const [work, setPalavra] = useState([])
   const [venceu, setVenceu] = useState(false)
   const [perdeu, setPerdeu] = useState(false)
   const [erro, setErro] = useState(0)
 
+  function iniciarJogo() {
+    const escolhida = [...palavras[Math.floor(Math.random() * palavras.length)]]
+    const escolha = escolhida.map(_e => "_")
+    setWork(escolhida)
+    setPalavra(escolha)
+    setClicado(false)
+  }
+
   function escolha(letra) {
-    console.log(erro)
     const incluida = selecionados.includes(letra)
     if (!incluida) {
       setSelecionados([...selecionados, letra])
     }
 
-    palavra.map((e, index) => {
-      if (e === letra) {
-        palavras[index] = letra
-        setPalavra([...palavras])
+    for (let i = 0; i < palavra.length; i++) {
+      if (palavra[i] === letra) {
+        work[i] = letra
+        setPalavra([...work])
       }
-    })
+    }
 
-    if (!palavras.includes("_")) {
+    if (!work.includes("_")) {
       setVenceu(true)
     }
 
@@ -39,7 +45,7 @@ function App() {
         setPerdeu(true)
         setPalavra([...palavra])
       }
-    } else if (palavra.toString() === palavras.toString()) {
+    } else if (palavra.toString() === work.toString()) {
       setClicado(true)
     }
   }
@@ -47,14 +53,22 @@ function App() {
   return (
     <>
       <Jogo
-        setClicado={setClicado}
-        palavras={!clicado || venceu || perdeu ? palavras : []}
+        iniciarJogo={iniciarJogo}
+        clicado={clicado}
+        work={!clicado || venceu || perdeu ? work : []}
         venceu={venceu}
         perdeu={perdeu}
         erro={erro}
       />
 
       <Letras
+        perdeu={perdeu}
+        venceu={venceu}
+        clicado={clicado}
+        selecionados={selecionados}
+        escolha={escolha} />
+
+      <Chute
         palavra={palavra}
         setPalavra={setPalavra}
         perdeu={perdeu}
@@ -62,11 +76,7 @@ function App() {
         venceu={venceu}
         setVenceu={setVenceu}
         setErro={setErro}
-        clicado={clicado}
-        setClicado={setClicado}
-        selecionados={selecionados}
-        setSelecionados={setSelecionados}
-        escolha={escolha} />
+        clicado={clicado} />
     </>
   );
 }
