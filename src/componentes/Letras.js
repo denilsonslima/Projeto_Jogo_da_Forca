@@ -8,7 +8,7 @@ function Letras({ clicado, selecionados, escolha, perdeu, venceu }) {
                     <button
                         data-test="letter"
                         key={l}
-                        disabled={perdeu || venceu || selecionados.includes(l)}
+                        disabled={perdeu || venceu || selecionados.includes(l) || clicado}
                         style={venceu || perdeu || clicado ? { backgroundColor: "#9FAAB5" } : {}}
                         className={`letra ${selecionados.includes(l) ? "selecionado" : {}}`}
                         onClick={() => escolha(l)}>{(l).toUpperCase()}</button>)}
